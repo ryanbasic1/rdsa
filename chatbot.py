@@ -235,6 +235,18 @@ class TalentScoutChatbot:
         if not cleaned or cleaned.upper() == "UNKNOWN":
             return user_message
 
+        # Fallback to user_message if extracted value is likely invalid
+        if field_name == "full_name" and len(cleaned.split()) < 2:
+            return user_message
+        if field_name == "email" and "@" not in cleaned:
+            return user_message
+        if field_name == "phone_number" and not re.match(r"^\+?[0-9\s\-()]{7,20}$", cleaned):
+            return user_message
+        if field_name == "desired_positions" and len(cleaned.split(",")) < 1:
+            return user_message
+        if field_name == "tech_stack" and len(cleaned.split(",")) < 1:
+            return user_message
+
         return cleaned
 
     def _validate_field(self, field_name: str, value: str) -> Tuple[bool, object, Optional[str]]:
