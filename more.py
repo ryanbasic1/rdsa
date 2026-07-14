@@ -112,3 +112,38 @@ def avrgandsum(arr):
 
 # print(avrgandsum(arr=[5,15,25]))
 
+#day 4
+
+def maxandmin(arr):
+    maxx  = float('-inf')
+    min = float('inf')
+    for i in arr:
+        if i > maxx :
+            maxx = i
+        elif i < min:
+            min = i
+    return min,maxx
+
+# print(maxandmin(arr=[4,2,9,1,7,-2]))
+
+##searching the elements using binary search
+
+
+def binarysearch(arr,tobefoundelement):
+    low = 0 
+    high = len(arr)-1
+    while low <= high:
+        mid = low + (high-low)//2
+        if arr[mid] == tobefoundelement:
+            return f"the element is found at {mid}"
+        elif tobefoundelement < arr[mid]:
+            high = mid -1
+        elif tobefoundelement > arr[mid]:
+            low = mid +1
+    return " not found"
+
+arr=[1,2,3,4,5,6,7]
+print(binarysearch(arr,5))
+
+        
+             
