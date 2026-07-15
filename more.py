@@ -131,7 +131,6 @@ def maxandmin(arr):
 
 def binarysearch(arr,tobefoundelement):
     low = 0 
-    high = len(arr)-1
     while low <= high:
         mid = low + (high-low)//2
         if arr[mid] == tobefoundelement:
@@ -142,8 +141,50 @@ def binarysearch(arr,tobefoundelement):
             low = mid +1
     return " not found"
 
-arr=[1,2,3,4,5,6,7]
-print(binarysearch(arr,5))
+# arr=[1,2,3,4,5,6,7]
+# print(binarysearch(arr,5))
 
         
              
+#move zero questions
+
+
+# def movezero(arr):
+#     last = len(arr)-1
+#     first = 0
+#     while first <= last:
+#         if arr[first] ==0 and arr[last] != 0:
+#             arr[first],arr[last] = arr[last],arr[first]
+#             last -=1
+#         first +=1
+#     return arr
+
+# print(movezero(arr=[0,0,1,0,3,12,9]))
+
+
+
+def movezero(arr):
+    first = 0
+    for  i in range(len(arr)):
+        if arr[i] != 0:
+            arr[first] = arr[i]
+            first +=1
+    return arr[:first] + [0]*(len(arr)-first)
+
+# print(movezero(arr=[0,0,1,0,3,12,9]))
+
+#remove duplicates from sorted array
+
+
+def removeduplicates(arr):
+    first = 0
+    for i in range(len(arr)):
+        if arr[first] != arr[i]:
+            first +=1
+            arr[first] = arr[i]
+    return arr[:first+1]    
+
+
+print(removeduplicates(arr=[1,1,2,2,3,4,4,5,5,6]))
+
+
